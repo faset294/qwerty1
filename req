@@ -1,0 +1,30 @@
+import telebot
+bot = telebot.TeleBot("1525590211:AAG0xCE9Qacqqa0wwlU91sQbpRpVP2RiYMw")
+
+a = list()
+
+@bot.message_handler(content_types=("text"))
+def get_text_message(message):
+
+    choice=message.text
+    print(a)
+    if choice.isdigit():
+        a.append(int(choice))
+    else:
+        if choice == "+":
+            numq = a[0] + a[1]
+            bot.send_message(message.from_user.id, numq)
+        elif choice == "-":
+            numw = a[0] - a[1]
+            bot.send_message(message.from_user.id, numw)
+        elif choice == "/":
+            nume = a[0] / a[1]
+            bot.send_message(message.from_user.id, nume)
+        elif choice == "*":
+            numr = a[0] * a[1]
+            bot.send_message(message.from_user.id, numr)
+        a.clear()
+
+
+
+bot.polling(none_stop=True, interval=0)
